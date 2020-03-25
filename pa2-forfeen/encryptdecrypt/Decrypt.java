@@ -1,5 +1,6 @@
 package encryptdecrypt;
 import java.lang.StringBuffer;
+import java.lang.Math;
 
 public class Decrypt {
     private static String alphabet = "abcdefghijklmnopqrstuvwxyz";
@@ -23,7 +24,13 @@ public class Decrypt {
             if (inputChar == ' ' || inputChar == '!') {
                 decrypt.append(inputChar);
             } else {
-                decrypt.append(alphabet.charAt((index - key) % 26));
+                int position = index - key;
+                if (position < 0){
+                    decrypt.append(alphabet.charAt(26+((index-key)%26)));
+                }
+                else {
+                    decrypt.append(alphabet.charAt(Math.abs((index - key) % 26)));
+                }
             }
         }
         return decrypt;
