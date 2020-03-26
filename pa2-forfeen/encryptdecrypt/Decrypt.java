@@ -12,37 +12,58 @@ public class Decrypt {
 
     private int key;
 
-    public Decrypt(String text, int key){
+    private String alg;
+
+
+    public Decrypt(String text, int key, String alg){
         this.text = text;
         this.key = key;
+        this.alg = alg;
     }
 
-    public static StringBuffer decrypt(String text, int key) {
+    public static StringBuffer decrypt(String text, int key, String alg) {
 
         StringBuffer decrypt = new StringBuffer();
 
-        for (int i = 0; i < text.length(); i++) {
-            char inputChar = text.charAt(i);
-            int indexLowerCase = (byte) alphabetLowerCase.indexOf(inputChar);
-            int indexUpperCase = (byte) alphabetUpperCase.indexOf(inputChar);
-            int position = indexLowerCase - Math.abs(key);
+        if (alg.equals("shift")) {
 
-            if (Character.isUpperCase(inputChar)) {
-                if (position < 0 ){
-                    decrypt.append((alphabetUpperCase.charAt(26 + ((indexUpperCase - Math.abs(key)) % 26))));
+            for (int i = 0; i < text.length(); i++) {
+                char inputChar = text.charAt(i);
+                int indexLowerCase = (byte) alphabetLowerCase.indexOf(inputChar);
+                int indexUpperCase = (byte) alphabetUpperCase.indexOf(inputChar);
+                int position = indexLowerCase - Math.abs(key);
+
+                if (Character.isUpperCase(inputChar)) {
+                    if (position < 0) {
+                        decrypt.append((alphabetUpperCase.charAt(26 + ((indexUpperCase - Math.abs(key)) % 26))));
+                    } else {
+                        decrypt.append((alphabetUpperCase.charAt((indexLowerCase - Math.abs(key)) % 26)));
+                    }
+                } else if (Character.isLowerCase(inputChar)) {
+                    if (position < 0) {
+                        decrypt.append(alphabetLowerCase.charAt( 26 + ((indexLowerCase - Math.abs(key)) % 26 ) ));
+                    } else {
+                        decrypt.append((alphabetLowerCase.charAt((indexLowerCase - Math.abs(key)) % 26)));
+                    }
                 } else {
-                    decrypt.append((alphabetUpperCase.charAt((indexLowerCase - Math.abs(key)) % 26)));
+                    decrypt.append(inputChar);
                 }
-            } else if (Character.isLowerCase(inputChar)) {
-                if (position < 0) {
-                    decrypt.append((alphabetLowerCase.charAt(26 + ((indexUpperCase - Math.abs(key)) % 26))));
-                } else {
-                    decrypt.append((alphabetLowerCase.charAt((indexLowerCase - Math.abs(key)) % 26)));
-                }
-            } else {
-                decrypt.append(inputChar);
             }
-        }
-        return decrypt;
+        } else if (alg.equals("unicode")){
+            if (key == 0){
+                int newKey = 1;
+                for (int i = 0; i < text.length(); i++) {
+                    int charPosition = Character.codePointAt(text, i);
+                    String unicodeDecrypt = Character.toString(charPosition + newKey);
+                    decrypt.append(unicodeDecrypt);
+                }
+            } else if (key > 0) {
+                for (int i = 0; i < text.length(); i++) {
+                    int charPosition = Character.codePointAt(text, i);
+                    String unicodeDecrypt = Character.toString(charPosition + key);
+                    decrypt.append(unicodeDecrypt);
+                }
+            }
+        } return decrypt;
     }
 }
