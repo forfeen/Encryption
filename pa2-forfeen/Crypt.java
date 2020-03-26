@@ -22,6 +22,9 @@ public class Crypt{
             }
             else if ((args[i]).equals("-key")){
                 key = Integer.parseInt(args[i+1]);
+                if (key < 0) {
+                    crypt = "dec";
+                }
             }
             else if ((args[i]).equals("-data")){
                 input = (String) args[i+1];

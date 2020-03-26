@@ -25,19 +25,19 @@ public class Decrypt {
             char inputChar = text.charAt(i);
             int indexLowerCase = (byte) alphabetLowerCase.indexOf(inputChar);
             int indexUpperCase = (byte) alphabetUpperCase.indexOf(inputChar);
-            int position = indexLowerCase - key;
+            int position = indexLowerCase - Math.abs(key);
 
             if (Character.isUpperCase(inputChar)) {
                 if (position < 0 ){
-                    decrypt.append((alphabetUpperCase.charAt(26 + ((indexUpperCase - key) % 26))));
+                    decrypt.append((alphabetUpperCase.charAt(26 + ((indexUpperCase - Math.abs(key)) % 26))));
                 } else {
-                    decrypt.append((alphabetUpperCase.charAt((indexLowerCase - key) % 26)));
+                    decrypt.append((alphabetUpperCase.charAt((indexLowerCase - Math.abs(key)) % 26)));
                 }
             } else if (Character.isLowerCase(inputChar)) {
                 if (position < 0) {
-                    decrypt.append((alphabetLowerCase.charAt(26 + ((indexUpperCase - key) % 26))));
+                    decrypt.append((alphabetLowerCase.charAt(26 + ((indexUpperCase - Math.abs(key)) % 26))));
                 } else {
-                    decrypt.append((alphabetLowerCase.charAt((indexLowerCase - key) % 26)));
+                    decrypt.append((alphabetLowerCase.charAt((indexLowerCase - Math.abs(key)) % 26)));
                 }
             } else {
                 decrypt.append(inputChar);

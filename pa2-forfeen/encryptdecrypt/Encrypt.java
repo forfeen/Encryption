@@ -28,7 +28,7 @@ public class Encrypt {
             if (Character.isUpperCase(inputChar)) {
                 encrypt.append((alphabetUpperCase.charAt((indexUpperCase + key) % 26)));
             } else if (Character.isLowerCase(inputChar)) {
-                encrypt.append(alphabetLowerCase.charAt((indexLowerCase + key) % 26));
+                encrypt.append(alphabetLowerCase.charAt((indexLowerCase +key) % 26));
             } else {
                 encrypt.append(inputChar);
             }
