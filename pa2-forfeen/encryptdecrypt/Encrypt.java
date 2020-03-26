@@ -1,8 +1,11 @@
 package encryptdecrypt;
 import java.lang.StringBuffer;
+import java.lang.Character;
 
 public class Encrypt {
-    private static String alphabet = "abcdefghijklmnopqrstuvwxyz";
+    private static String alphabetLowerCase = "abcdefghijklmnopqrstuvwxyz";
+
+    private static String alphabetUpperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     private String text;
 
@@ -18,12 +21,16 @@ public class Encrypt {
         StringBuffer encrypt = new StringBuffer();
 
         for (int i = 0; i < text.length(); i++) {
-            char inputChar = text.toLowerCase().charAt(i);
-            int index = (byte) alphabet.indexOf(inputChar);
-            if (inputChar == ' ' || inputChar == '!') {
-                encrypt.append(inputChar);
+            char inputChar = text.charAt(i);
+            int indexLowerCase = (byte) alphabetLowerCase.indexOf(inputChar);
+            int indexUpperCase = (byte) alphabetUpperCase.indexOf(inputChar);
+
+            if (Character.isUpperCase(inputChar)) {
+                encrypt.append((alphabetUpperCase.charAt((indexUpperCase + key) % 26)));
+            } else if (Character.isLowerCase(inputChar)) {
+                encrypt.append(alphabetLowerCase.charAt((indexLowerCase + key) % 26));
             } else {
-                encrypt.append(alphabet.charAt((index + key) % 26));
+                encrypt.append(inputChar);
             }
         }
         return encrypt;

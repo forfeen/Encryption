@@ -1,9 +1,12 @@
 package encryptdecrypt;
 import java.lang.StringBuffer;
 import java.lang.Math;
+import java.lang.Character;
 
 public class Decrypt {
-    private static String alphabet = "abcdefghijklmnopqrstuvwxyz";
+    private static String alphabetLowerCase = "abcdefghijklmnopqrstuvwxyz";
+
+    private static String alphabetUpperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     private String text;
 
@@ -19,18 +22,25 @@ public class Decrypt {
         StringBuffer decrypt = new StringBuffer();
 
         for (int i = 0; i < text.length(); i++) {
-            char inputChar = text.toLowerCase().charAt(i);
-            int index = (byte) alphabet.indexOf(inputChar);
-            if (inputChar == ' ' || inputChar == '!') {
-                decrypt.append(inputChar);
+            char inputChar = text.charAt(i);
+            int indexLowerCase = (byte) alphabetLowerCase.indexOf(inputChar);
+            int indexUpperCase = (byte) alphabetUpperCase.indexOf(inputChar);
+            int position = indexLowerCase - key;
+
+            if (Character.isUpperCase(inputChar)) {
+                if (position < 0 ){
+                    decrypt.append((alphabetUpperCase.charAt(26 + ((indexUpperCase - key) % 26))));
+                } else {
+                    decrypt.append((alphabetUpperCase.charAt((indexLowerCase - key) % 26)));
+                }
+            } else if (Character.isLowerCase(inputChar)) {
+                if (position < 0) {
+                    decrypt.append((alphabetLowerCase.charAt(26 + ((indexUpperCase - key) % 26))));
+                } else {
+                    decrypt.append((alphabetLowerCase.charAt((indexLowerCase - key) % 26)));
+                }
             } else {
-                int position = index - key;
-                if (position < 0){
-                    decrypt.append(alphabet.charAt(26+((index-key)%26)));
-                }
-                else {
-                    decrypt.append(alphabet.charAt(Math.abs((index - key) % 26)));
-                }
+                decrypt.append(inputChar);
             }
         }
         return decrypt;
