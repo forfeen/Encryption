@@ -3,7 +3,7 @@ import java.lang.StringBuffer;
 import java.lang.Character;
 import java.lang.String;
 
-public class Encrypt {
+public class Encrypt implements CryptStrategy {
     private static String alphabetLowerCase = "abcdefghijklmnopqrstuvwxyz";
 
     private static String alphabetUpperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -14,13 +14,8 @@ public class Encrypt {
 
     private String alg;
 
-    public Encrypt(String text, int key, String alg){
-        this.text = text;
-        this.key = key;
-        this.alg = alg;
-    }
-
-    public static StringBuffer encrypt(String text,int key,String alg) {
+    @Override
+    public StringBuffer execute(String text,int key,String alg) {
 
         StringBuffer encrypt = new StringBuffer();
 
