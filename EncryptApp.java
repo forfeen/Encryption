@@ -69,8 +69,11 @@ public class EncryptApp {
             }
         }
 
-        //Cipher cipher =  CipherFactory.getCipher(alg,key);
-        //System.out.println(cipher);
-
+        Cipher cipher =  CipherFactory.getCipher(alg,key);
+        if (mode.equals("dec")) {
+            System.out.println(cipher.decrypt(data));
+        } else if (mode.equals("enc")) {
+            System.out.println(cipher.encrypt(data));
+        }
     }
 }
