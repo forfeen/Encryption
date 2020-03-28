@@ -1,4 +1,5 @@
-package algocipher;
+import algocipher.Cipher;
+import algocipher.CipherFactory;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -68,8 +69,8 @@ public class EncryptApp {
             }
         }
 
-        Cipher cipher =  CipherFactory.getCipher(alg,key);
-        System.out.println(cipher);
+        //Cipher cipher =  CipherFactory.getCipher(alg,key);
+        //System.out.println(cipher);
 
     }
 }
