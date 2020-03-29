@@ -17,7 +17,7 @@ public class EncryptApp {
         String mode = "enc";
         String alg = "shift";
         String data = " ";
-        String inputFromFile = " ";
+        String dataFromFile = " ";
         String fileInput = " ";
         String nameFileOutput  =  " " ;
         int key = 1;
@@ -52,7 +52,7 @@ public class EncryptApp {
                 }
                 else {
                     try {
-                        inputFromFile = Files.readString(filePath);
+                        dataFromFile = Files.readString(filePath);
                     } catch (FileNotFoundException c) {
                         System.out.println("File not found.");
                     } catch (IOException e) {
@@ -71,9 +71,39 @@ public class EncryptApp {
 
         Cipher cipher =  CipherFactory.getCipher(alg,key);
         if (mode.equals("dec")) {
-            System.out.println(cipher.decrypt(data));
+            if ( !dataFromFile.equals(" ") && nameFileOutput.equals(" ") && data.equals(" ")) {
+                System.out.println("Please name destination file.");
+            } else if ( !dataFromFile.equals(" ") && !nameFileOutput.equals(" ") && data.equals(" ")){
+                try {
+                    File outputFile = new File(nameFileOutput);
+                    FileWriter outputFileWriter = new FileWriter(outputFile);
+                    BufferedWriter writer = new BufferedWriter(outputFileWriter);
+                    writer.write((cipher.decrypt(data).toString()));
+                    writer.close();
+                    System.out.println("Completed!");
+                } catch (IOException e) {
+                    System.out.println("Please name destination file.");
+                }
+            } else {
+                System.out.println(cipher.decrypt(data));
+            }
         } else if (mode.equals("enc")) {
-            System.out.println(cipher.encrypt(data));
+            if ( !dataFromFile.equals(" ") && nameFileOutput.equals(" ") && data.equals(" ")) {
+                System.out.println("Please name destination file.");
+            } else if ( !dataFromFile.equals(" ") && !nameFileOutput.equals(" ") && data.equals(" ")){
+                try {
+                    File outputFile = new File(nameFileOutput);
+                    FileWriter outputFileWriter = new FileWriter(outputFile);
+                    BufferedWriter writer = new BufferedWriter(outputFileWriter);
+                    writer.write((cipher.encrypt(data).toString()));
+                    writer.close();
+                    System.out.println("Completed!");
+                } catch (IOException e) {
+                    System.out.println("Please name destination file.");
+                }
+            } else {
+                System.out.println(cipher.encrypt(data));
+            }
         }
     }
 }
