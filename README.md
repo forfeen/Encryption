@@ -25,7 +25,7 @@ All the arguments are optional and the meanings of the options are:
 
 **-out** outputfile write the output to outputfile. If this option is not given then output to System.out.
 
-##Example
+## Example
 Command :  ```java EncryptApp -mode enc -key 5 -data "Welcome to hyperskill!"```
 
 Output  : ```Bjqhtrj yt mdujwxpnqq!```
@@ -44,13 +44,13 @@ Output : ```Completed!```
 
 Encrypts file secret.txt and writes the output to secret.enc.
 
-##Requirements
+## Requirements
 The application requires
 * JavaSE13
 
 * IDE (IntelliJ IDEA , Visual Studio Code)
 
-##Installation
+## Installation
 1. Clone this repository then go to the directory.
 
 ```bash 
