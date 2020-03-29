@@ -4,7 +4,9 @@ import java.lang.Character;
 import java.lang.String;
 import java.lang.Math;
 
-/** To shift all characters using the Unicode character sequence. */
+/** To shift all characters using the Unicode character sequence.
+ * @author Chananya Photan
+ * */
 public class UnicodeCipher implements Cipher {
 
     /** The lower alphabet of English letters. */

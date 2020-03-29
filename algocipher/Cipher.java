@@ -1,6 +1,8 @@
 package algocipher;
 
-/** The Cipher interface to ues a string for encrypt or decrypt */
+/** The Cipher interface to ues a string for encrypt or decrypt
+ * @author Chananya Photan
+ * */
 
 public interface Cipher {
 

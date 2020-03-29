@@ -1,6 +1,8 @@
 package algocipher;
 
-/** CipherFactor to call the algorithm and key. */
+/** CipherFactor to call the algorithm and key.
+ * @author Chananya Photan
+ * */
 public class CipherFactory {
 
     /**

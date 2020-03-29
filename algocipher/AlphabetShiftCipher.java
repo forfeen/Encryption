@@ -4,7 +4,9 @@ import java.lang.Character;
 import java.lang.String;
 import java.lang.Math;
 
-/** To shift the English letters using a rotational cipher.*/
+/** To shift the English letters using a rotational cipher.
+ *  @author Chananya Photan
+ *  */
 public class AlphabetShiftCipher implements Cipher {
 
     /** The lower alphabet of English letters. */

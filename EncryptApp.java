@@ -10,9 +10,11 @@ import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.NumberFormatException;
 
 /**
  *  Encrypt Application to encrypt - decrypt characters from an InputStream or string.
+ * @author Chananya Photan
  */
 public class EncryptApp {
 
@@ -42,7 +44,11 @@ public class EncryptApp {
                     mode = "enc";
                 }
             } else if ((args[i]).equals("-key")) { // To get the key to used for encryption or decryption
+                try {
                 key = Integer.parseInt(args[i + 1]);
+                } catch (NumberFormatException e) {
+                    System.out.println("Can't input the string.");
+                }
                 if (key < 0) {
                     mode = "dec";
                 }
