@@ -58,7 +58,7 @@ git clone https://github.com/OOP2020/pa2-forfeen.git
 ```
 
 ```bash 
-cd pa2-forfeen
+cd Encryption
 ```
 
 2. Compile the EncryptApp.java
