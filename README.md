@@ -1,4 +1,4 @@
-# Programming Assignment 2 - Encryption
+# Encryption
 An application that encrypts or decrypts a file or String using command line arguments. 
 
 The syntax is :
@@ -76,14 +76,3 @@ java EncryptApp -mode enc -key 5 -data "Welcome to hyperskill!"
 > Suggestion : If you can't input a string by using **" "** (Double Quote) , So you can use **' '** (Single Quote).
 
 > For Example : java EncryptApp -mode enc -key 5 -data 'Welcome to hyperskill!'
-
-
-**Created by**
-
-Chananya Photan 6110545481
-   
-
-
-
-
-
